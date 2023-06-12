@@ -10,8 +10,9 @@ use Services\SMSService;
 class MessageController extends Controller
 {
 
-    public function index()
+    public function index(): void
     {
+        $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
         $msg = new Message();
         $messages = $msg->all();
 
