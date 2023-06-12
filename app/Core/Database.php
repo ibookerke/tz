@@ -6,8 +6,7 @@ use PDO;
 
 Trait Database
 {
-
-    private function connect()
+    protected function connect()
     {
         $cfg = require "../config/db.php";
         $driver = $cfg['default'];

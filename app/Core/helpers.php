@@ -1,6 +1,6 @@
 <?php
 
-function abort(int $err_code = 500, string $msg = '', string $err = ''): void
+function abort(int $err_code = 500, string|null $msg = '', string|null $err = ''): void
 {
     if(empty($msg)) {
         $msg = match ($err_code) {

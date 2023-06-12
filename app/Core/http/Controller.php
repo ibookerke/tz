@@ -1,9 +1,15 @@
 <?php
 
-namespace Core;
+namespace Core\http;
 
 class Controller
 {
+    public Request $request;
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
+
     public function view($view, $data = []) : void
     {
         $view = str_replace('.', '/', $view);
@@ -19,19 +25,6 @@ class Controller
         }
 
         require $filename;
-    }
-
-    protected function getPostData()
-    {
-        $pairs = explode("&", file_get_contents("php://input"));
-        $vars = array();
-        foreach ($pairs as $pair) {
-            $nv = explode("=", $pair);
-            $name = urldecode($nv[0]);
-            $value = urldecode($nv[1]);
-            $vars[$name] = $value;
-        }
-        return $vars;
     }
 
 }

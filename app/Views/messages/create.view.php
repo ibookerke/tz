@@ -15,6 +15,7 @@
 
 
     <form method="POST" action="/messages/store">
+        <input type="hidden" name="_token" value="<?php echo $_SESSION['token'] ?? '' ?>">
         <div class="row">
             <div class="col">
                 <label for="msg"></label>

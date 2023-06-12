@@ -1,7 +1,8 @@
 <?php
 
-use \Controllers\MessageController;
-use Core\Route;
+use Controllers\MessageController;
+use Core\http\Route;
+
 return [
     '' => new Route([
         'type' => 'GET',

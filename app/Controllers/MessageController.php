@@ -2,8 +2,10 @@
 
 namespace Controllers;
 
-use Core\Controller;
+use Core\http\Controller;
 use Models\Message;
+use Services\MailService;
+use Services\SMSService;
 
 class MessageController extends Controller
 {
@@ -26,14 +28,19 @@ class MessageController extends Controller
 
     public function store(): void
     {
-        $request_data = $this->getPostData();
-
+        $request_data = $this->request->all();
         $message = $request_data['msg'];
 
         $msg = new Message();
         $msg->insert([
             'message' => $message
         ]);
+
+        $mail = new MailService();
+        $mail->send("some_email", "Email Subject", $message);
+
+        $sms = new SMSService();
+        $sms->send("8717271727", $message);
 
         redirect('');
     }
